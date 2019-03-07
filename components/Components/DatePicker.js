@@ -16,8 +16,6 @@ export default class DateTime extends Component {
       isTimePickerVisible: false
 
     };
-
-
   }
 
   showOrHideTime = (timeType, val) => {
