@@ -20,7 +20,7 @@ export default class DateTime extends Component {
 
   }
 
-  showTime = (timeType, val) => {
+  showOrHideTime = (timeType, val) => {
     this.setState({ [timeType]: val });
   }
 
@@ -32,13 +32,13 @@ export default class DateTime extends Component {
   handleTimePicked = (date) => {
     if (this.state.isDateTimePickerVisible) {
       this.setState({ chosenDate: moment(date).format(' MMMM, D YYYY'), chosenDay: moment(date).format(' dddd ') })
-      this.hideTime('isDateTimePickerVisible', false)
+      this.showOrHideTime('isDateTimePickerVisible', false)
     }
     else {
       // else if TimePicker is true set the values for time
       if (this.state.isTimePickerVisible) {
         this.setState({ chosenTime: moment(date).format(' h:mm a') })
-        this.hideTime('isTimePickerVisible', false)
+        this.showOrHideTime('isTimePickerVisible', false)
 
       }
     }
@@ -53,12 +53,12 @@ export default class DateTime extends Component {
           <TimeButton
             chosenDay={chosenDay}
             chosenDate={chosenDate}
-            showDatePicker={() => this.showTime('isDateTimePickerVisible', true)}
+            showDatePicker={() => this.showOrHideTime('isDateTimePickerVisible', true)}
             mode={true} />
 
           <TimeButton
             chosenTime={chosenTime}
-            showTimePicker={() => this.showTime('isTimePickerVisible', true)}
+            showTimePicker={() => this.showOrHideTime('isTimePickerVisible', true)}
             mode={false} />
         </View>
 
@@ -70,7 +70,7 @@ export default class DateTime extends Component {
           hideTitleContainerIOS={true}
           isVisible={this.state.isDateTimePickerVisible}
           onConfirm={this.handleTimePicked}
-          onCancel={() => this.hideTime('isDateTimePickerVisible', false)}
+          onCancel={() => this.showOrHideTime('isDateTimePickerVisible', false)}
         />
 
         <DateTimePicker
@@ -81,7 +81,7 @@ export default class DateTime extends Component {
           mode='time'
           isVisible={this.state.isTimePickerVisible}
           onConfirm={this.handleTimePicked}
-          onCancel={() => this.hideTime('isTimePickerVisible', false)}
+          onCancel={() => this.showOrHideTime('isTimePickerVisible', false)}
         />
 
       </View>
