@@ -37,9 +37,9 @@ const styles = StyleSheet.create({
 
     wrapperStyle: {
         width: 175, height: 100, backgroundColor: 'white', padding: 5, borderRadius: 6, shadowColor: '#000',
-        shadowOffset: { width: 0.5, height: 0.5 },
+        shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.05,
-        shadowRadius: 6,
+        shadowRadius: 0,
         elevation: 1
     },
     timeStyle: {

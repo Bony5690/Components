@@ -1,13 +1,109 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList} from 'react-native';
 import DateTime from './Components/DatePicker';
 import Input from './Components/Input/Input';
+import AssistBlock from './Components/AssistBlock/AssistBlock';
+import TimeLine from './Components/timeLine';
+
+
 
 export default class App extends Component {
     constructor(){
       super()
       this.state = {
-         value: 'Search for a property'
+         value: 'Search for a property',
+         data: [
+           {
+            id: 1,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 2,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 3,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 4,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 5,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 6,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 7,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 8,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 9,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 11,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 12,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 13,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 14,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 15,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           },
+           {
+            id: 16,
+            today: 'wednesday',
+            time: '1:00',
+            address: '169 W. Huron St. '
+           }
+         ]
       }
     }
 
@@ -16,9 +112,27 @@ export default class App extends Component {
     }
 
   render() {
+    console.log(this.state.data)
     return (
       <View style={styles.container}>
-      <View style={{marginTop: 50, marginBottom: 20, marginHorizontal: 20}}>
+    <FlatList
+    keyExtractor={item => item.id}
+    data={this.state.data}
+    renderItem={({item}) => (
+      <AssistBlock
+      today={item.today}
+      time={item.time}
+      address={item.address}
+      />
+      
+    )}
+ 
+    />
+   
+      
+      
+
+      {/* <View style={{marginTop: 50, marginBottom: 20, marginHorizontal: 20}}>
       <Input
          titleStyle={{color: '#8E8E93', marginBottom: 10, paddingLeft: 5, fontSize: 20, letterSpacing: 0.38, lineHeight: 24}}
          style={{paddingLeft: 5, fontSize: 17, color: '#6DA3D3' }}
@@ -30,7 +144,7 @@ export default class App extends Component {
          />
       </View>
         
-         <DateTime/>
+         <DateTime/> */}
       </View>
     );
   }
@@ -39,7 +153,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    backgroundColor: '#F5FCFF',
+    
+  
+    backgroundColor: '#F5F5F5',
   }
 });
