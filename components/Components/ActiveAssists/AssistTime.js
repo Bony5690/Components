@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, Image, View, StyleSheet } from 'react-native';
+import { Text,  View, StyleSheet } from 'react-native';
 
 
 const AssistTime = (props) => {
     return(
-        <View style={{marginHorizontal: 10, marginTop: 30}}>
-            <Text>{props.today}</Text>
-            <Text>{props.time}</Text>
+        <View style={styles.wrapperStyles}>
+            <Text style={styles.todayStyle}>{props.today}</Text>
+            <Text style={styles.timeStyle}>{props.time}</Text>
         </View>
     )
   
@@ -26,7 +26,18 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 0,
         // elevation: 1
-   } 
+   } ,
+   todayStyle: {
+       color: '#8E8E93',
+       fontSize: 11
+   },
+   timeStyle: {
+       color: '#8E8E93',
+       fontSize: 11
+   },
+   wrapperStyles: {
+    marginHorizontal: 10, marginTop: 35
+   }
 })
 
 

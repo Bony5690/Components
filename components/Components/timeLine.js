@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 
-const TimeLine = (props) => {
+const TimeLine = () => {
   return (
     <View >
 
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     top: 45,
     left: 0,
     width: 2,
-    height: 70,
+    height: 85,
     bottom: 0,
   },
   topLine: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   dot: {
     width: 7,
     height: 7,
-    top: -5,
+    top: -20,
     borderRadius: 8,
     backgroundColor: '#6DA3D3',
   },

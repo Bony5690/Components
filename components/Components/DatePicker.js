@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import TimeButton from './TimeBlock';
+import TimeButton from './ActiveAssists/TimeBlock';
 import moment from 'moment';
 
 
