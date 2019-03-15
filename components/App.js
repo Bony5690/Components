@@ -3,8 +3,11 @@ import { Platform, StyleSheet, Text, View, FlatList } from 'react-native';
 // import AssistBlock from './Components/AssistBlock/ActiveAssist';
 // import TimeLine from './Components/TimeLine';
 import ActiveAssist from './Components/ActiveAssists/ActiveAssist';
-
-
+import TextInputLines from './Components/LimitedInput/LimitedInput';
+import TimeLineDetails from './Components/TimeLine';
+import TimeDetails from './Components/RequestDetails/DateDetailBlock';
+import PropertyInfo from './Components/RequestDetails/PropertyInfo';
+import RequestingBroker from './Components/RequestDetails/RequestingBroker';
 
 export default class App extends Component {
   constructor() {
@@ -106,6 +109,10 @@ export default class App extends Component {
     }
   }
 
+  changeTextHandler = (e) => {
+      this.setState({value: e.target.value})
+  }
+
   inputHandler = (e) => {
     this.setState({ value: e.target.value })
   }
@@ -114,8 +121,15 @@ export default class App extends Component {
     console.log(this.state.data)
     return (
       <View style={styles.container}>
-        <View style={{ marginTop: 20 }}>
-          <FlatList
+      <TimeDetails requestAmount={75}/>
+        <PropertyInfo/>
+        <RequestingBroker/>
+      
+
+        {/* <View style={{ marginTop: 20 }}> */}
+
+       
+          {/* <FlatList
             keyExtractor={item => item.id}
             data={this.state.data}
             renderItem={({ item }) => (
@@ -124,11 +138,9 @@ export default class App extends Component {
                 time={item.time}
                 address={item.address}
               />
-
             )}
-
-          />
-        </View>
+          /> */}
+        {/* </View> */}
         {/* <View style={{marginTop: 50, marginBottom: 20, marginHorizontal: 20}}>
       <Input
          titleStyle={{color: '#8E8E93', marginBottom: 10, paddingLeft: 5, fontSize: 20, letterSpacing: 0.38, lineHeight: 24}}
@@ -150,6 +162,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+     paddingTop: 40,
+     alignItems: 'flex-start',
     backgroundColor: '#F5F5F5',
   }
 });
