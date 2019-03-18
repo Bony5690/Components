@@ -8,6 +8,9 @@ import TimeLineDetails from './Components/TimeLine';
 import TimeDetails from './Components/RequestDetails/DateDetailBlock';
 import PropertyInfo from './Components/RequestDetails/PropertyInfo';
 import RequestingBroker from './Components/RequestDetails/RequestingBroker';
+import Instructions from './Components/RequestDetails/Instructions';
+import OfferAssist from './Components/RequestDetails/OfferAssistButton';
+
 
 export default class App extends Component {
   constructor() {
@@ -118,12 +121,15 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.data)
     return (
-      <View style={styles.container}>
+      <View style={{flex: 1, paddingTop: 40,  backgroundColor: '#F5F5F5', }}>
       <TimeDetails requestAmount={75}/>
         <PropertyInfo/>
         <RequestingBroker/>
+        <Instructions 
+        Instructions='Need Help with covering a photoshoot in River North Help Please!'/>
+        <OfferAssist/>
+
       
 
         {/* <View style={{ marginTop: 20 }}> */}
@@ -164,6 +170,6 @@ const styles = StyleSheet.create({
     flex: 1,
      paddingTop: 40,
      alignItems: 'flex-start',
-    backgroundColor: '#F5F5F5',
+     backgroundColor: '#F5F5F5',
   }
 });
