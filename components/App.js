@@ -113,7 +113,7 @@ export default class App extends Component {
   }
 
   changeTextHandler = (e) => {
-      this.setState({value: e.target.value})
+    this.setState({ value: e.target.value })
   }
 
   inputHandler = (e) => {
@@ -122,20 +122,27 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, paddingTop: 40,  backgroundColor: '#F5F5F5', }}>
-      <TimeDetails requestAmount={75}/>
-        <PropertyInfo/>
-        <RequestingBroker/>
-        <Instructions 
-        Instructions='Need Help with covering a photoshoot in River North Help Please!'/>
-        <OfferAssist/>
-
-      
-
+      <View style={{ flex: 1, paddingTop: 40, backgroundColor: '#F5F5F5', }}>
+        <TimeDetails
+          date='OCT. 19'
+          time='11:30 AM'
+          requestType='Showing'
+          dayOfWeek='Wednesday'
+          requestAmount={75} />
+        <PropertyInfo 
+        address='180 N. Jefferson St.'
+        cityStateZip='Chicago, IL 60654'
+        />
+        <RequestingBroker
+          brokerName='John Doe'
+          brokerFirm='Dream Town Reality'
+        />
+        <Instructions
+          Instructions='Need Help with covering a photoshoot in River North Help Please!' />
+        <OfferAssist
+        />
         {/* <View style={{ marginTop: 20 }}> */}
-
-       
-          {/* <FlatList
+        {/* <FlatList
             keyExtractor={item => item.id}
             data={this.state.data}
             renderItem={({ item }) => (
@@ -168,8 +175,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-     paddingTop: 40,
-     alignItems: 'flex-start',
-     backgroundColor: '#F5F5F5',
+    paddingTop: 40,
+    alignItems: 'flex-start',
+    backgroundColor: '#F5F5F5',
   }
 });

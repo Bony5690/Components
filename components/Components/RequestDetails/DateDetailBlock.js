@@ -6,20 +6,23 @@ import TimeBlockDetails from './TimeBlockDetails';
 
 
 const TimeDetails = (props) => {
-    return(
+    return (
         <View>
-            <View style={{flexDirection: 'row'}}>
-                <MoneyTab requestAmount={props.requestAmount}/>
-                <View style={{left: 80}}>
-                <TimeBlockDetails/>
+            <View style={{ flexDirection: 'row' }}>
+                <MoneyTab requestAmount={props.requestAmount} />
+                <View style={{ left: 80 }}>
+                    <TimeBlockDetails 
+                    requestType={props.requestType}
+                    time={props.time}
+                    date={props.date}
+                    dayOfWeek={props.dayOfWeek} />
                 </View>
-                
+
+            </View>
         </View>
-        </View>
-        
+
     )
-  
+
 }
 
-//marginTop: 10, fontSize: 18, paddingRight: 20
 export default TimeDetails;

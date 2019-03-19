@@ -16,8 +16,8 @@ const RequestingBroker = (props) => {
                                 source={require('../ActiveAssists/Assets/broker.jpg')} />
                         </View>
                         <View style={{marginTop: 5}}>
-                            <Text>Marshall Beck</Text>
-                            <Text>Dream Town Reality</Text>
+                            <Text> {props.brokerName}</Text>
+                            <Text> {props.brokerFirm}</Text>
                             <StarRating value={4}/>
                         </View>
 
