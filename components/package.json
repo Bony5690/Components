@@ -12,7 +12,8 @@
     "react-native": "0.58.6",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-modal-datetime-picker": "^6.0.0",
-    "react-native-modal-picker": "^0.0.16"
+    "react-native-modal-picker": "^0.0.16",
+    "react-native-svg": "^9.3.5"
   },
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",

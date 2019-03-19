@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Svg} from 'react-native-svg';
 import { Platform, StyleSheet, Text, View, FlatList } from 'react-native';
 // import AssistBlock from './Components/AssistBlock/ActiveAssist';
 // import TimeLine from './Components/TimeLine';
@@ -10,6 +11,7 @@ import PropertyInfo from './Components/RequestDetails/PropertyInfo';
 import RequestingBroker from './Components/RequestDetails/RequestingBroker';
 import Instructions from './Components/RequestDetails/Instructions';
 import OfferAssist from './Components/RequestDetails/OfferAssistButton';
+import Camera from './Components/ActiveAssists/Assets/photoshoot-dark.svg';
 
 
 export default class App extends Component {
@@ -124,7 +126,7 @@ export default class App extends Component {
     return (
       <View style={{ flex: 1, paddingTop: 40, backgroundColor: '#F5F5F5', }}>
       {/* Request Details*/}
-        {/* <TimeDetails
+        <TimeDetails
           date='OCT. 19'
           time='11:30 AM'
           requestType='Showing'
@@ -141,11 +143,12 @@ export default class App extends Component {
         <Instructions
           Instructions='Need Help with covering a photoshoot in River North Help Please!' />
         <OfferAssist
-        /> */}
+        />
+
 
 
           {/* Active Assists */}
-        <View style={{ marginTop: 20 }}>
+        {/* <View style={{ marginTop: 20 }}>
        <FlatList
             keyExtractor={item => item.id}
             data={this.state.data}
@@ -157,7 +160,7 @@ export default class App extends Component {
               />
             )}
           /> 
-        </View>
+        </View> */}
 
 
         {/* <View style={{marginTop: 50, marginBottom: 20, marginHorizontal: 20}}>

@@ -4802,6 +4802,11 @@ react-native-modal@^6.2.0:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"
 
+react-native-svg@^9.3.5:
+  version "9.3.5"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-9.3.5.tgz#86ea5f6de4b9996c51784c3e7f84859915519466"
+  integrity sha512-wQqW8NxePnXGOGcWo6zGsEucNQ6L+5qjstTGH8n6cLN79dI1v3yavYwYxmd5m/kTtaEv1ZtQz3qb990UFiyw3w==
+
 react-native@0.58.6:
   version "0.58.6"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.58.6.tgz#a6d273cd2f51b0e3b141dad5f19622e0000497b3"
