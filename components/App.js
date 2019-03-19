@@ -123,7 +123,8 @@ export default class App extends Component {
   render() {
     return (
       <View style={{ flex: 1, paddingTop: 40, backgroundColor: '#F5F5F5', }}>
-        <TimeDetails
+      {/* Request Details*/}
+        {/* <TimeDetails
           date='OCT. 19'
           time='11:30 AM'
           requestType='Showing'
@@ -140,9 +141,12 @@ export default class App extends Component {
         <Instructions
           Instructions='Need Help with covering a photoshoot in River North Help Please!' />
         <OfferAssist
-        />
-        {/* <View style={{ marginTop: 20 }}> */}
-        {/* <FlatList
+        /> */}
+
+
+          {/* Active Assists */}
+        <View style={{ marginTop: 20 }}>
+       <FlatList
             keyExtractor={item => item.id}
             data={this.state.data}
             renderItem={({ item }) => (
@@ -152,8 +156,10 @@ export default class App extends Component {
                 address={item.address}
               />
             )}
-          /> */}
-        {/* </View> */}
+          /> 
+        </View>
+
+
         {/* <View style={{marginTop: 50, marginBottom: 20, marginHorizontal: 20}}>
       <Input
          titleStyle={{color: '#8E8E93', marginBottom: 10, paddingLeft: 5, fontSize: 20, letterSpacing: 0.38, lineHeight: 24}}
