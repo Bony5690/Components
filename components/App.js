@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Svg} from 'react-native-svg';
+import { Svg } from 'react-native-svg';
+import AddPaymentInfo from './Components/PaymentCapture/AddPaymentInfo';
 import { Platform, StyleSheet, Text, View, FlatList } from 'react-native';
 // import AssistBlock from './Components/AssistBlock/ActiveAssist';
 // import TimeLine from './Components/TimeLine';
@@ -12,13 +13,23 @@ import RequestingBroker from './Components/RequestDetails/RequestingBroker';
 import Instructions from './Components/RequestDetails/Instructions';
 import OfferAssist from './Components/RequestDetails/OfferAssistButton';
 import Camera from './Components/ActiveAssists/Assets/photoshoot-dark.svg';
-
+import PaymentTextBlock from './Components/PaymentCapture/PaymentTypeBlock';
+import PaymentInput from './Components/PaymentCapture/PaymentInfoInput';
+import DateTime from './Components/DatePicker';
 
 export default class App extends Component {
   constructor() {
     super()
     this.state = {
       value: 'Search for a property',
+      checked: false,
+      routingNum: '',
+      accountNum: '',
+      cardNum: '',
+      expDate: '',
+      cvv: '',
+      bankPay: true,
+      cardPay: false,
       data: [
         {
           id: 1,
@@ -114,19 +125,132 @@ export default class App extends Component {
     }
   }
 
-  changeTextHandler = (e) => {
-    this.setState({ value: e.target.value })
-  }
+  // changeTextHandler = (e) => {
+  //   this.setState({ value: e.target.value })
+  // }
 
   inputHandler = (e) => {
     this.setState({ value: e.target.value })
   }
 
+  setValue = (name, val) => {
+    this.setState({ [name]: val })
+  }
+
+  setBankPay = () => {
+    this.setState({bankPay: true, cardPay: false })
+  }
+
+  setCardPay = () => {
+    this.setState({cardPay: true, bankPay: false, })
+  }
+
+
   render() {
+    const { checked, accountNum, routingNum , cardNum, expDate, cvv, bankPay, cardPay} = this.state
     return (
       <View style={{ flex: 1, paddingTop: 40, backgroundColor: '#F5F5F5', }}>
-      {/* Request Details*/}
-        <TimeDetails
+        <AddPaymentInfo
+        cardPay={cardPay}
+       bankPay={bankPay}
+        onBankPress={this.setBankPay}
+        onCardPress={this.setCardPay}
+        cVV={cvv}
+        onCvv={(val) => this.setValue('cvv', val)}
+        expDate={expDate}
+        onExpDate={(val) => this.setValue('expDate', val)}
+        onCardNum={(val) => this.setValue('cardNum', val)}
+        cardNum={cardNum}
+        accountNum={accountNum}
+        accountNum={(val) => this.setValue('accountNum', val)}
+        routingNum={routingNum}
+        onRoutNum={(val) => this.setValue('routingNum', val)}
+         />
+
+        {/* <PaymentInput
+          placeholder='Routing Number'
+          wrapperStyle={{ marginTop: 30, backgroundColor: 'white' }}
+          onChange={(val) => this.setValue('routingNum', val)}
+          inputStyle={{
+            color: '#8E8E93',
+            borderTopWidth: 0.2,
+            borderBottomWidth: 0.2,
+            padding: 10,
+            borderTopColor: '#8E8E93',
+            borderBottomColor: '#8E8E93'
+          }}
+          value={routingNum} />
+        <PaymentInput
+          placeholder='Account Number'
+          inputStyle={{
+            color: '#8E8E93',
+            borderTopWidth: 0.2,
+            borderBottomWidth: 0.2,
+            padding: 10,
+            borderTopColor: '#8E8E93',
+            borderBottomColor: '#8E8E93',
+
+          }}
+          wrapperStyle={{ backgroundColor: 'white' }}
+          onChange={(val) => this.setValue('accountNum', val)}
+          value={accountNum} />
+
+
+        <PaymentInput
+          placeholder='Card Number'
+          inputStyle={{
+            color: '#8E8E93',
+            borderTopWidth: 0.2,
+            borderBottomWidth: 0,
+            padding: 10,
+            borderTopColor: '#8E8E93',
+            borderBottomColor: '#8E8E93',
+
+          }}
+          wrapperStyle={{ backgroundColor: 'white' }}
+          onChange={(val) => this.setValue('cardNum', val)}
+          value={accountNum} />
+
+
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <PaymentInput
+            placeholder='MM/YY'
+            inputStyle={{
+              color: '#8E8E93',
+              borderTopWidth: 0.2,
+              borderBottomWidth: 0.2,
+              padding: 10,
+              borderTopColor: '#8E8E93',
+              borderBottomColor: '#8E8E93',
+
+            }}
+            wrapperStyle={{ backgroundColor: 'white', width: 175, marginTop: 10 }}
+            onChange={(val) => this.setValue('accountNum', val)}
+            value={accountNum} />
+
+          <PaymentInput
+            placeholder='123'
+            inputStyle={{
+              color: '#8E8E93',
+              borderTopWidth: 0.2,
+              borderBottomWidth: 0.2,
+              padding: 10,
+              borderTopColor: '#8E8E93',
+              borderBottomColor: '#8E8E93',
+
+            }}
+            wrapperStyle={{ backgroundColor: 'white', width: 175, marginTop: 10 }}
+            onChange={(val) => this.setValue('accountNum', val)}
+            value={accountNum} />
+        </View> */}
+
+
+        {/* <PaymentTextBlock 
+      paymentType='Credit Card'
+      shortenLine={true}/> */}
+        {/* Request Details*/}
+        {/* <TimeDetails
           date='OCT. 19'
           time='11:30 AM'
           requestType='Showing'
@@ -143,11 +267,12 @@ export default class App extends Component {
         <Instructions
           Instructions='Need Help with covering a photoshoot in River North Help Please!' />
         <OfferAssist
-        />
+        /> */}
 
 
 
-          {/* Active Assists */}
+
+        {/* Active Assists */}
         {/* <View style={{ marginTop: 20 }}>
        <FlatList
             keyExtractor={item => item.id}
@@ -176,6 +301,8 @@ export default class App extends Component {
       </View>
         
          <DateTime/> */}
+
+        {/* <DateTime/>  */}
       </View>
     );
   }
