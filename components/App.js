@@ -151,6 +151,9 @@ export default class App extends Component {
     return (
       <View style={{ flex: 1, paddingTop: 40, backgroundColor: '#F5F5F5', }}>
         <AddPaymentInfo
+        creditCardInfo={bankPay}
+     checkingBlock={bankPay}
+     savingsBlock={bankPay}
         cardPay={cardPay}
        bankPay={bankPay}
         onBankPress={this.setBankPay}

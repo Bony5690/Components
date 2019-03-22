@@ -6,7 +6,7 @@ import PaymentInput from './PaymentInfoInput';
 const AddPaymentInfo = (props) => {
     return (
         <View>
-            <Text style={{ padding: 5, fontSize: 20, color: '#8E8E93', letterSpacing: 0.38, lineHeight: 24 }}>Payment Type</Text>
+            <Text style={{ paddingTop: 10, paddingLeft: 10, paddingBottom: 10, fontSize: 20, color: '#8E8E93', letterSpacing: 0.38, lineHeight: 24 }}>Payment Type</Text>
             <PaymentTextBlock
                 onPress={props.onBankPress}
                 topBorderStyle={{
@@ -42,11 +42,21 @@ const AddPaymentInfo = (props) => {
                     padding: 0.3,
                 }}
                 paymentType='Credit Card' />
+                {
+                    !props.creditCardInfo &&
+                    <View style={{marginTop: 8, marginLeft: 10}}>
+                    <Text>Using a credit card will incur a 3% additional fee</Text>
+                    </View>
+                }
 
+                    
+                 
+                
+            <Text style={{marginTop: 20, marginLeft: 10, marginBottom: 12, fontSize: 20, color: '#8E8E93', letterSpacing: 0.38, lineHeight: 24 }}>Payment Details</Text>
 
-            <Text style={{ paddingTop: 10, paddingLeft: 5, fontSize: 20, color: '#8E8E93', letterSpacing: 0.38, lineHeight: 24 }}>Payment Details</Text>
-
-
+                {
+                    props.checkingBlock &&
+             
             <PaymentTextBlock
                 topBorderStyle={{
                     borderTopColor: '#8E8E93',
@@ -64,7 +74,10 @@ const AddPaymentInfo = (props) => {
                 }}
                 paymentType='Checking' />
 
-
+            }
+            {
+                props.savingsBlock &&
+     
             <PaymentTextBlock
                 topBorderStyle={{
                     borderTopColor: '#8E8E93',
@@ -77,16 +90,16 @@ const AddPaymentInfo = (props) => {
                 bottomBorderStyle={{
                     borderBottomColor: '#8E8E93',
                     borderBottomWidth: 0.3,
-                    padding: 1,
+                    padding: 0.3,
 
                 }}
                 paymentType='Savings' />
-
+            }
             <View>
                 {
                     props.bankPay &&
 
-                    <View style={{ marginTop: 20 }}>
+                    <View style={{ marginTop: 0 }}>
                         <PaymentInput
                             placeholder='Routing Number'
                             wrapperStyle={{ marginTop: 30, backgroundColor: 'white' }}

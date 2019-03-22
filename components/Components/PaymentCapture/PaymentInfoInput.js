@@ -2,10 +2,16 @@ import React, {Component}  from 'react';
 import { View, Text, TextInput,    } from 'react-native';
 import { tsPropertySignature } from '@babel/types';
 import PropTypes from 'prop-types'
+import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
+
+
 class PaymentInput extends Component {
     render() {
         return(
             <View>
+              {/* <LiteCreditCardInput onChange={() => form => console.log(form)} /> */}
+
+
             <View style={this.props.wrapperStyle}>
             <TextInput
             placeholder={this.props.placeholder}
