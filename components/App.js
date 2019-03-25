@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import Swiper from 'react-native-swiper';
 import { Svg } from 'react-native-svg';
+import ShareButton from './Components/AlbumViewer/ShareButton';
+import ActionButton from './Components/AlbumViewer/ActionButton';
 import AddPaymentInfo from './Components/PaymentCapture/AddPaymentInfo';
-import { Platform, StyleSheet, Text, View, FlatList } from 'react-native';
+import { Platform, StyleSheet, Text, View, FlatList, ImageBackground, Image } from 'react-native';
 // import AssistBlock from './Components/AssistBlock/ActiveAssist';
 // import TimeLine from './Components/TimeLine';
 import ActiveAssist from './Components/ActiveAssists/ActiveAssist';
 import TextInputLines from './Components/LimitedInput/LimitedInput';
-import TimeLineDetails from './Components/TimeLine';
+// import TimeLineDetails from './Components/TimeLine';
 import TimeDetails from './Components/RequestDetails/DateDetailBlock';
 import PropertyInfo from './Components/RequestDetails/PropertyInfo';
 import RequestingBroker from './Components/RequestDetails/RequestingBroker';
@@ -149,8 +152,32 @@ export default class App extends Component {
   render() {
     const { checked, accountNum, routingNum , cardNum, expDate, cvv, bankPay, cardPay} = this.state
     return (
-      <View style={{ flex: 1, paddingTop: 40, backgroundColor: '#F5F5F5', }}>
-        <AddPaymentInfo
+      <View style={{ flex: 1, backgroundColor: '#F5F5F5', }}>
+
+<ImageBackground source={require('./Components/AlbumViewer/input-bg-orange.jpg')} style={{width: '100%', height: '100%'}}>
+      <ShareButton 
+            style={{width: 50, height: 50}}
+      source={require('./Components/AlbumViewer/Assets/Share-Image.png')} />
+      <ActionButton 
+      onPress={() => alert('it works')}
+      style={{width: 50, height: 50}}
+      source={require('./Components/AlbumViewer/Assets/action-button.png')}/>
+{/* <Swiper style={styles.wrapper} showsButtons={true}>
+        <View style={styles.slide1}>
+          <Text style={styles.text}>Hello Swiper</Text>
+        </View>
+        <View style={styles.slide2}>
+          <Text style={styles.text}>Beautiful</Text>
+        </View>
+        <View style={styles.slide3}>
+          <Text style={styles.text}>And simple</Text>
+        </View>
+      </Swiper> */}
+
+  </ImageBackground>
+
+
+        {/* <AddPaymentInfo
         creditCardInfo={bankPay}
      checkingBlock={bankPay}
      savingsBlock={bankPay}
@@ -168,7 +195,7 @@ export default class App extends Component {
         accountNum={(val) => this.setValue('accountNum', val)}
         routingNum={routingNum}
         onRoutNum={(val) => this.setValue('routingNum', val)}
-         />
+         /> */}
 
         {/* <PaymentInput
           placeholder='Routing Number'
@@ -317,5 +344,28 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     alignItems: 'flex-start',
     backgroundColor: '#F5F5F5',
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5',
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
   }
 });
