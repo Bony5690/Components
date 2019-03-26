@@ -10,6 +10,7 @@ import { Platform, StyleSheet, Text, View, FlatList, ImageBackground, Image } fr
 import ActiveAssist from './Components/ActiveAssists/ActiveAssist';
 import TextInputLines from './Components/LimitedInput/LimitedInput';
 // import TimeLineDetails from './Components/TimeLine';
+import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet'
 import TimeDetails from './Components/RequestDetails/DateDetailBlock';
 import PropertyInfo from './Components/RequestDetails/PropertyInfo';
 import RequestingBroker from './Components/RequestDetails/RequestingBroker';
@@ -19,6 +20,7 @@ import Camera from './Components/ActiveAssists/Assets/photoshoot-dark.svg';
 import PaymentTextBlock from './Components/PaymentCapture/PaymentTypeBlock';
 import PaymentInput from './Components/PaymentCapture/PaymentInfoInput';
 import DateTime from './Components/DatePicker';
+import AlbumViewer from './Components/AlbumViewer/AlbumViewers';
 
 export default class App extends Component {
   constructor() {
@@ -128,6 +130,24 @@ export default class App extends Component {
     }
   }
 
+  onAlert = () => {
+    alert('Are you sure you want to delete your post')
+  }
+
+
+  moreAction(index) {
+    switch(index) {
+      case 2: 
+      setTimeout(() => this.onAlert())
+      break;
+      case 1 :
+      setTimeout(() => alert('this works: case1'))
+
+      break;
+     
+    }
+  }
+
   // changeTextHandler = (e) => {
   //   this.setState({ value: e.target.value })
   // }
@@ -148,34 +168,45 @@ export default class App extends Component {
     this.setState({cardPay: true, bankPay: false, })
   }
 
+  showActionSheet = () => {
+    this.ActionSheet.show()
+  }
+
 
   render() {
     const { checked, accountNum, routingNum , cardNum, expDate, cvv, bankPay, cardPay} = this.state
     return (
       <View style={{ flex: 1, backgroundColor: '#F5F5F5', }}>
+       {/* <PaymentTextBlock 
+      paymentType='Credit Card'
+      shortenLine={true}/>  */}
+      {/* Request Details */}
+     <TimeDetails
+          date='OCT. 19'
+          time='11:30 AM'
+          requestType='Showing'
+          dayOfWeek='Wednesday'
+          requestAmount={75} />
+        <PropertyInfo 
+        address='180 N. Jefferson St.'
+        cityStateZip='Chicago, IL 60654'
+        />
+        <RequestingBroker
+          brokerName='John Doe'
+          brokerFirm='Dream Town Reality'
+        />
+        <Instructions
+          Instructions='Need Help with covering a photoshoot in River North Help Please!' />
+        <OfferAssist
+        /> 
+      {/* <AlbumViewer onPress={this.showActionSheet}/>
 
-<ImageBackground source={require('./Components/AlbumViewer/input-bg-orange.jpg')} style={{width: '100%', height: '100%'}}>
-      <ShareButton 
-            style={{width: 50, height: 50}}
-      source={require('./Components/AlbumViewer/Assets/Share-Image.png')} />
-      <ActionButton 
-      onPress={() => alert('it works')}
-      style={{width: 50, height: 50}}
-      source={require('./Components/AlbumViewer/Assets/action-button.png')}/>
-{/* <Swiper style={styles.wrapper} showsButtons={true}>
-        <View style={styles.slide1}>
-          <Text style={styles.text}>Hello Swiper</Text>
-        </View>
-        <View style={styles.slide2}>
-          <Text style={styles.text}>Beautiful</Text>
-        </View>
-        <View style={styles.slide3}>
-          <Text style={styles.text}>And simple</Text>
-        </View>
-      </Swiper> */}
-
-  </ImageBackground>
-
+     <ActionSheet
+          ref={o => this.ActionSheet = o}
+          options={options}
+          cancelButtonIndex={0}
+          onPress={(index) => this.moreAction(index)} */}
+     {/* />  */}
 
         {/* <AddPaymentInfo
         creditCardInfo={bankPay}
@@ -276,28 +307,7 @@ export default class App extends Component {
         </View> */}
 
 
-        {/* <PaymentTextBlock 
-      paymentType='Credit Card'
-      shortenLine={true}/> */}
-        {/* Request Details*/}
-        {/* <TimeDetails
-          date='OCT. 19'
-          time='11:30 AM'
-          requestType='Showing'
-          dayOfWeek='Wednesday'
-          requestAmount={75} />
-        <PropertyInfo 
-        address='180 N. Jefferson St.'
-        cityStateZip='Chicago, IL 60654'
-        />
-        <RequestingBroker
-          brokerName='John Doe'
-          brokerFirm='Dream Town Reality'
-        />
-        <Instructions
-          Instructions='Need Help with covering a photoshoot in River North Help Please!' />
-        <OfferAssist
-        /> */}
+       
 
 
 
@@ -367,5 +377,21 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
-  }
+  },
+  actionSheetRow: {flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 60,},
+  actionSheetRowImage: {marginLeft: 40, maxHeight: 30, maxWidth: 30,},
+  actionSheetRowText: {marginLeft: 32, marginTop: 5, fontSize: 18},
+  button: {alignSelf: 'center', borderRadius: 8, borderWidth: 1, borderColor: 'white',},
+  buttonText: {paddingTop: 8, paddingBottom: 8, paddingLeft:12, paddingRight:12,  color: 'white', fontSize: 18, },
 });
+
+const options = [
+  'Cancel',
+  <View style={styles.actionSheetRow}> 
+    <Text>Delete Entry</Text>
+  </View>, 
+  <View style={styles.actionSheetRow}> 
+    <Text>Edit Entry</Text>
+  </View>,
+ 
+];

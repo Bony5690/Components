@@ -4,7 +4,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 const ActionButton = (props) => {
     return(
-        <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 20, marginLeft: 20,}}>
+        <View style={{ justifyContent: 'flex-end', marginBottom: 20, marginLeft: 20,}}>
         <TouchableOpacity onPress={props.onPress}>
         <Image 
             style={props.style}

@@ -8,7 +8,7 @@ import TimeBlockDetails from './TimeBlockDetails';
 const TimeDetails = (props) => {
     return (
         <View>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', marginTop: 60, }}>
                 <MoneyTab requestAmount={props.requestAmount} />
                 <View style={{ left: 80 }}>
                     <TimeBlockDetails 
