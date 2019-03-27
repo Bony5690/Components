@@ -12,7 +12,7 @@ const PaymentTextBlock = (props) => {
                 <View>
                     
                 </View>
-                <Text style={{color: 'black',}}> {props.paymentType}</Text>
+                <Text style={props.placeholderTextStyle}> {props.paymentType}</Text>
                 </View>
              
                 <View> 

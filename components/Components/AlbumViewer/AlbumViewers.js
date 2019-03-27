@@ -8,7 +8,9 @@ const AlbumViewer = (props) => {
 
   return (
     <View>
-      <ImageBackground source={require('../AlbumViewer/input-bg-orange.jpg')} style={{ width: '100%', height: '100%', }}>
+      <ImageBackground 
+      style={{ padding: 50}}
+      source={require('../AlbumViewer/input-bg-orange.jpg')} style={{ width: '100%', height: '100%', }}>
         <ShareButton
         onPress={props.shareButton}
           style={{ width: 50, height: 50 }}

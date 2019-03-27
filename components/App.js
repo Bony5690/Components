@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Swiper from 'react-native-swiper';
 import { Svg } from 'react-native-svg';
-import Share, {ShareSheet, Button} from 'react-native-share'
+import Share, { ShareSheet, Button } from 'react-native-share'
 import ShareButton from './Components/AlbumViewer/ShareButton';
 import ActionButton from './Components/AlbumViewer/ActionButton';
 import AddPaymentInfo from './Components/PaymentCapture/AddPaymentInfo';
@@ -22,6 +22,7 @@ import PaymentTextBlock from './Components/PaymentCapture/PaymentTypeBlock';
 import PaymentInput from './Components/PaymentCapture/PaymentInfoInput';
 import DateTime from './Components/DatePicker';
 import AlbumViewer from './Components/AlbumViewer/AlbumViewers';
+import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
 
 export default class App extends Component {
   constructor() {
@@ -37,6 +38,7 @@ export default class App extends Component {
       cvv: '',
       bankPay: true,
       cardPay: false,
+      zipcode: '',
       data: [
         {
           id: 1,
@@ -134,12 +136,12 @@ export default class App extends Component {
 
   onOpen = () => {
     console.log("OPEN")
-    this.setState({visible:true});
+    this.setState({ visible: true });
   }
 
   onCancel = () => {
     console.log("CANCEL")
-    this.setState({visible:false});
+    this.setState({ visible: false });
   }
 
   onAlert = () => {
@@ -169,7 +171,13 @@ export default class App extends Component {
   }
 
   setValue = (name, val) => {
-    this.setState({ [name]: val })
+    if(name === 'expDate' && val.length === 2){
+      val = val + '/'
+      this.setState({ [name]: val })
+    } else {
+      this.setState({ [name]: val })
+    }
+   
   }
 
   setBankPay = () => {
@@ -184,7 +192,16 @@ export default class App extends Component {
     this.ActionSheet.show()
   }
 
-  
+  expirDate = (event) => {
+    const { value} = event.nativeEvent;
+    if(value.length === 2) {
+    value = value+ '/'
+      this.setState({ expDate: value })
+
+    }
+  }
+
+
 
 
   render() {
@@ -195,9 +212,11 @@ export default class App extends Component {
       subject: "Share Link" //  for email
     };
 
-    const { checked, accountNum, routingNum, cardNum, expDate, cvv, bankPay, cardPay } = this.state
+    const { checked, accountNum, routingNum, cardNum, expDate, cvv, bankPay, cardPay, zipcode } = this.state
     return (
       <View style={{ flex: 1, backgroundColor: '#F5F5F5', }}>
+     
+
         {/* <PaymentTextBlock 
       paymentType='Credit Card'
       shortenLine={true}/>  */}
@@ -220,7 +239,7 @@ export default class App extends Component {
           Instructions='Need Help with covering a photoshoot in River North Help Please!' />
         <OfferAssist
         />  */}
-        <AlbumViewer
+        {/* <AlbumViewer
           shareButton={() => Share.open(shareOptions)}
           onPress={this.showActionSheet} />
 
@@ -229,108 +248,33 @@ export default class App extends Component {
           options={options}
           cancelButtonIndex={0}
           onPress={(index) => this.moreAction(index)}
+        /> */}
+
+
+
+
+
+        <AddPaymentInfo
+        zipcode={zipcode}
+        onZipCode={(val) => this.setValue('zipcode', val)}
+          creditCardInfo={bankPay}
+          checkingBlock={bankPay}
+          savingsBlock={bankPay}
+          cardPay={cardPay}
+          bankPay={bankPay}
+          onBankPress={this.setBankPay}
+          onCardPress={this.setCardPay}
+          cVV={cvv}
+          onCvv={(val) => this.setValue('cvv', val)}
+          expDate={expDate}
+          onExpDate={ (val) => this.setValue('expDate', val)}
+          onCardNum={(val) => this.setValue('cardNum', val)}
+          cardNum={cardNum}
+          accountNum={accountNum}
+          accountNum={(val) => this.setValue('accountNum', val)}
+          routingNum={routingNum}
+          onRoutNum={(val) => this.setValue('routingNum', val)}
         />
-
-
-
-<ShareSheet visible={this.state.visible} onCancel={this.onCancel.bind(this)}>
-          <Button iconSrc={{ uri: TWITTER_ICON }}
-                  onPress={()=>{
-              this.onCancel();
-              setTimeout(() => {
-                Share.shareSingle(Object.assign(shareOptions, {
-                  "social": "twitter"
-                }));
-              },300);
-            }}>Twitter</Button>
-          <Button iconSrc={{ uri: FACEBOOK_ICON }}
-                  onPress={()=>{
-              this.onCancel();
-              setTimeout(() => {
-                Share.shareSingle(Object.assign(shareOptions, {
-                  "social": "facebook"
-                }));
-              },300);
-            }}>Facebook</Button>
-          <Button iconSrc={{ uri: WHATSAPP_ICON }}
-                  onPress={()=>{
-              this.onCancel();
-              setTimeout(() => {
-                Share.shareSingle(Object.assign(shareOptions, {
-                  "social": "whatsapp"
-                }));
-              },300);
-            }}>Whatsapp</Button>
-          <Button iconSrc={{ uri: GOOGLE_PLUS_ICON }}
-                  onPress={()=>{
-              this.onCancel();
-              setTimeout(() => {
-                Share.shareSingle(Object.assign(shareOptions, {
-                  "social": "googleplus"
-                }));
-              },300);
-            }}>Google +</Button>
-          <Button iconSrc={{ uri: EMAIL_ICON }}
-                  onPress={()=>{
-              this.onCancel();
-              setTimeout(() => {
-                Share.shareSingle(Object.assign(shareOptions, {
-                  "social": "email"
-                }));
-              },300);
-            }}>Email</Button>
-          <Button iconSrc={{ uri: PINTEREST_ICON }}
-                  onPress={()=>{
-              this.onCancel();
-              setTimeout(() => {
-                Share.shareSingle(Object.assign(shareOptions, {
-                  "social": "pinterest"
-                }));
-              },300);
-            }}>Pinterest</Button>
-          <Button
-            iconSrc={{ uri: CLIPBOARD_ICON }}
-            onPress={()=>{
-              this.onCancel();
-              setTimeout(() => {
-                if(typeof shareOptions["url"] !== undefined) {
-                  Clipboard.setString(shareOptions["url"]);
-                  if (Platform.OS === "android") {
-                    ToastAndroid.show('Link copiado al portapapeles', ToastAndroid.SHORT);
-                  } else if (Platform.OS === "ios") {
-                    AlertIOS.alert('Link copiado al portapapeles');
-                  }
-                }
-              },300);
-            }}>Copy Link</Button>
-          <Button iconSrc={{ uri: MORE_ICON }}
-            onPress={()=>{
-              this.onCancel();
-              setTimeout(() => {
-                Share.open(shareOptions)
-              },300);
-            }}>More</Button>
-        </ShareSheet>
-
-        {/* <AddPaymentInfo
-        creditCardInfo={bankPay}
-     checkingBlock={bankPay}
-     savingsBlock={bankPay}
-        cardPay={cardPay}
-       bankPay={bankPay}
-        onBankPress={this.setBankPay}
-        onCardPress={this.setCardPay}
-        cVV={cvv}
-        onCvv={(val) => this.setValue('cvv', val)}
-        expDate={expDate}
-        onExpDate={(val) => this.setValue('expDate', val)}
-        onCardNum={(val) => this.setValue('cardNum', val)}
-        cardNum={cardNum}
-        accountNum={accountNum}
-        accountNum={(val) => this.setValue('accountNum', val)}
-        routingNum={routingNum}
-        onRoutNum={(val) => this.setValue('routingNum', val)}
-         /> */}
 
         {/* <PaymentInput
           placeholder='Routing Number'
