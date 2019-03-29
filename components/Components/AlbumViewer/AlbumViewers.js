@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity, ImageBackground, StyleSheet, } fro
 import ActionButton from './ActionButton';
 import ShareButton from './ShareButton';
 import Swiper from 'react-native-swiper';
+import Input from './Input'
 
 const AlbumViewer = (props) => {
 
@@ -21,19 +22,25 @@ const AlbumViewer = (props) => {
           <View style={styles.slide1}>
           <Image 
           style={{width: 350, height: 350}}
-          source={require('./Assets/album-pic.jpg')}/>
+          source={require('./Assets/album-pic1.jpg')}/>
           </View>
           <View style={styles.slide2}>
           <Image 
           style={{width: 350, height: 350}}
-          source={require('./Assets/album-pic.jpg')}/>
+          source={require('./Assets/album-pic1.jpg')}/>
           </View>
           <View style={styles.slide3}>
           <Image
           style={{width: 350, height: 350}}
-           source={require('./Assets/album-pic.jpg')}/>
+           source={require('./Assets/album-pic1.jpg')}/>
           </View>
+        
         </Swiper>
+        <View style={{top: -100,  alignContent: 'center', paddingHorizontal: 10,}}>
+         <Input 
+         inputStyle={{color: 'white', fontSize: 30}}
+          value='Family always make me energized'/>
+         </View>
         <ActionButton
           onPress={props.onPress}
           style={{ width: 35, height: 35 }}
