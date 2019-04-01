@@ -206,14 +206,14 @@ export default class App extends Component {
 
     const { checked, accountNum, routingNum, cardNum, expDate, cvv, bankPay, cardPay, zipcode } = this.state
     return (
-      <View style={{ flex: 1, backgroundColor: '#F5F5F5', }}>
+      <View style={{  backgroundColor: '#F5F5F5' }}>
 
 
         {/* <PaymentTextBlock 
       paymentType='Credit Card'
       shortenLine={true}/>  */}
         {/* Request Details */}
-       <TimeDetails
+       {/* <TimeDetails
           date='OCT. 19'
           time='11:30 AM'
           requestType='Showing'
@@ -230,8 +230,8 @@ export default class App extends Component {
         <Instructions
           Instructions='Need Help with covering a photoshoot in River North Help Please!' />
         <OfferAssist
-        />  
-        {/* <AlbumViewer
+        />   */}
+        <AlbumViewer
           shareButton={() => Share.open(shareOptions)}
           onPress={this.showActionSheet} />
 
@@ -241,7 +241,7 @@ export default class App extends Component {
           cancelButtonIndex={0}
           onPress={(index) => this.moreAction(index)}
         />
- */}
+
 
 
 

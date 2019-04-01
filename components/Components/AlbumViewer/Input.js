@@ -3,8 +3,9 @@ import { View, Text, TextInput  } from 'react-native';
 
 const Input = (props) => {
     return (
-        <View>
+        <View style={{  marginHorizontal: 20, }}>
         <TextInput 
+        placeholder={props.placeholder}
         multiline={true}
         style={props.inputStyle}
         placeholderTextColor="#ffffff"
