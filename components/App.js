@@ -206,7 +206,7 @@ export default class App extends Component {
 
     const { checked, accountNum, routingNum, cardNum, expDate, cvv, bankPay, cardPay, zipcode } = this.state
     return (
-      <View style={{  backgroundColor: '#F5F5F5' }}>
+      <View style={{  backgroundColor: '#F5F5F5'}}>
 
 
         {/* <PaymentTextBlock 

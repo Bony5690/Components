@@ -4,10 +4,10 @@ import { Text, StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 class HashTag extends React.Component {
 
     render() {
-        const { onClose, text, keyProp } = this.props;
+        const { onClose, text,  } = this.props;
             return (
                 <View style={[this.props.style, styles.wrap]}>
-                    <Text style={styles.buttonText} key={keyProp}>{`#${text}`}</Text>
+                    <Text style={styles.buttonText} >{`#${text}`}</Text>
                     <TouchableOpacity onPress={onClose}>
                         <Image style={styles.buttonX} source={require('./Assets/icon-circle-x.png')} />
                     </TouchableOpacity>

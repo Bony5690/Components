@@ -8,6 +8,7 @@ import Input from './Input'
 import SlidePic from './Assets/album-pic1.jpg'
 import input from './Input'
 import HashTag from './hashtag'
+import HashTagList from './hashTagList'
 
 class AlbumViewer extends Component {
 
@@ -31,9 +32,9 @@ class AlbumViewer extends Component {
     }
   }
 
-  _renderItem({ item, index }) {
+  _renderItem({ item }) {
     return (
-      <View >
+      <View>
         <Image
           source={item.image} />
       </View>
@@ -72,31 +73,48 @@ class AlbumViewer extends Component {
     const itemWidth = 375
     const sliderWidth = 375
     return (
-      <View>
+      <View style={{}}>
         <ImageBackground
           style={{ padding: 50 }}
           source={require('../AlbumViewer/input-bg-orange.jpg')} style={{ width: '100%', height: '100%', }}>
           <ShareButton
             onPress={this.props.shareButton}
-            style={{ width: 50, height: 50 }}
+            style={{ width: 50, height: 50, marginTop: 20 }}
             source={require('./Assets/Share-Image.png')} />
+          <View style={{ marginTop: 30 }}>
+            <Carousel
+              ref={(c) => { this._carousel = c; }}
+              data={items}
+              layout={'default'}
+              renderItem={this._renderItem}
+              sliderWidth={sliderWidth}
+              itemWidth={itemWidth}
+              firstItem={0}
+              slideStyle={{}}
+              activeDotIndex={0}
+              dotColor={'black'}
+              onSnapToItem={(index) => this.setState({ activeSlide: index })}
 
-          <Carousel
-            ref={(c) => { this._carousel = c; }}
-            data={items}
-            layout={'default'}
-            renderItem={this._renderItem}
-            sliderWidth={sliderWidth}
-            itemWidth={itemWidth}
-            firstItem={0}
-            slideStyle={{ justifyContent: 'center' }}
-            activeDotIndex={0}
-            dotColor={'black'}
-            onSnapToItem={(index) => this.setState({ activeSlide: index })}
-      
-          />
+            />
+            <View style={{ marginTop: 20 }}>
+              <Input
+                inputStyle={{ color: 'white', fontSize: 24, fontWeight: '600', }}
+                value='Family always makes me energized'
+              />
+              <HashTagList
+                tags={tags} />
+              <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                <ActionButton
+                  onPress={this.props.onPress}
+                  style={{ width: 35, height: 35, }}
+                  source={require('./Assets/action-button.png')} />
+                {this.pagination}
+              </View>
+            </View>
+          </View>
 
-          <View style={{ flex: 1, justifyContent: 'flex-start'}}>
+
+          {/* <View style={{ flex: 1, justifyContent: 'flex-start' }}>
             <Input
               inputStyle={{ color: 'white', fontSize: 24, fontWeight: '600', }}
               value='Family always makes me energized'
@@ -105,6 +123,7 @@ class AlbumViewer extends Component {
             <View style={{ flexDirection: 'row', margin: 10 }}>
               {tags.map((tag, index) => (
                 <HashTag
+                  key={index}
                   style={{
                     margin: 3, backgroundColor: '#FFFFFF'
                   }}
@@ -120,7 +139,7 @@ class AlbumViewer extends Component {
               style={{ width: 35, height: 35, }}
               source={require('./Assets/action-button.png')} />
             {this.pagination}
-          </View>
+          </View> */}
 
         </ImageBackground>
 
