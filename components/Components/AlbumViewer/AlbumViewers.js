@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, ImageBackground, StyleSheet, } from 'react-native';
 import ActionButton from './ActionButton';
 import ShareButton from './ShareButton';
+import Share, { ShareSheet, Button } from 'react-native-share'
+import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet'
 import Swiper from 'react-native-swiper';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import Input from './Input'
@@ -9,6 +11,9 @@ import SlidePic from './Assets/album-pic1.jpg'
 import input from './Input'
 import HashTag from './hashtag'
 import HashTagList from './hashTagList'
+import BluePic from './Assets/input-bg-blue.jpg'
+import GreenPic from './Assets/input-bg-green.jpg'
+import OrangePic from '../AlbumViewer/input-bg-orange.jpg'
 
 class AlbumViewer extends Component {
 
@@ -17,39 +22,34 @@ class AlbumViewer extends Component {
     this.state = {
       tags: [{ id: 1, name: 'nature' }, { id: 2, name: 'rain' }],
       activeSlide: 0,
+      backgroundColor: [OrangePic, BluePic, GreenPic],
 
       items: [{
+        backgroundImage: OrangePic,
         image: SlidePic,
+        tags: [{ text: 'rain' }, { text: 'water' }, { text: 'snow' }]
       },
       {
+        backgroundImage: BluePic,
         image: SlidePic,
+        tags: [{ text: 'rain' }, { text: 'water' }]
       },
       {
+        backgroundImage: GreenPic,
         image: SlidePic,
+        tags: [{ text: 'rain' }]
       },
       ]
 
     }
   }
 
-  _renderItem({ item }) {
-    return (
-      <View>
-        <Image
-          source={item.image} />
-      </View>
-
-
-    );
-  }
-
-
   get pagination() {
     const { items, activeSlide } = this.state;
     return (
       <Pagination
         dotsLength={items.length}
-        containerStyle={{ flex: 1, marginRight: 70 }}
+        containerStyle={{ top: -220 }}
         activeDotIndex={activeSlide}
         dotStyle={{
           width: 10,
@@ -68,82 +68,120 @@ class AlbumViewer extends Component {
   }
 
 
-  render() {
-    const { items, tags } = this.state
-    const itemWidth = 375
-    const sliderWidth = 375
+
+  moreAction(index) {
+    switch (index) {
+      case 2:
+        setTimeout(() => this.onAlert())
+        break;
+      case 1:
+        setTimeout(() => alert('this works: case1'))
+
+        break;
+
+    }
+  }
+
+
+  showActionSheet = () => {
+    this.ActionSheet.show()
+  }
+  _renderItem({ item, index }) {
+
+
+   
+
+
+
+
+    let shareOptions = {
+      title: "React Native",
+      message: "Hola mundo",
+      url: "http://facebook.github.io/react-native/",
+      subject: "Share Link" //  for email
+    };
     return (
-      <View style={{}}>
-        <ImageBackground
-          style={{ padding: 50 }}
-          source={require('../AlbumViewer/input-bg-orange.jpg')} style={{ width: '100%', height: '100%', }}>
-          <ShareButton
-            onPress={this.props.shareButton}
-            style={{ width: 50, height: 50, marginTop: 20 }}
-            source={require('./Assets/Share-Image.png')} />
-          <View style={{ marginTop: 30 }}>
-            <Carousel
-              ref={(c) => { this._carousel = c; }}
-              data={items}
-              layout={'default'}
-              renderItem={this._renderItem}
-              sliderWidth={sliderWidth}
-              itemWidth={itemWidth}
-              firstItem={0}
-              slideStyle={{}}
-              activeDotIndex={0}
-              dotColor={'black'}
-              onSnapToItem={(index) => this.setState({ activeSlide: index })}
+      <ImageBackground
+        style={{ width: '100%', height: '100%', }}
+        source={item.backgroundImage}>
+        <ShareButton
+          onPress={() => Share.open(shareOptions)}
 
-            />
-            <View style={{ marginTop: 20 }}>
-              <Input
-                inputStyle={{ color: 'white', fontSize: 24, fontWeight: '600', }}
-                value='Family always makes me energized'
-              />
-              <HashTagList
-                tags={tags} />
-              <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                <ActionButton
-                  onPress={this.props.onPress}
-                  style={{ width: 35, height: 35, }}
-                  source={require('./Assets/action-button.png')} />
-                {this.pagination}
-              </View>
-            </View>
-          </View>
+          style={{ width: 50, height: 50, marginTop: 20 }}
+          source={require('./Assets/Share-Image.png')} />
 
 
-          {/* <View style={{ flex: 1, justifyContent: 'flex-start' }}>
-            <Input
-              inputStyle={{ color: 'white', fontSize: 24, fontWeight: '600', }}
-              value='Family always makes me energized'
-            />
+        <View style={{ marginTop: 45 }}>
 
-            <View style={{ flexDirection: 'row', margin: 10 }}>
-              {tags.map((tag, index) => (
+          <Image
+            source={item.image} />
+          <Text style={{ marginHorizontal: 20, color: 'white', fontSize: 24, fontWeight: '600', marginTop: 10 }}>Family always makes me energized</Text>
+          <View style={{ flexDirection: 'row', marginTop: 30 }}>
+            {
+              item.tags.map((tag, index) => (
+
                 <HashTag
                   key={index}
-                  style={{
-                    margin: 3, backgroundColor: '#FFFFFF'
-                  }}
-                  text={tag.name} />
-              ))}
-            </View>
+                  style={{ backgroundColor: '#ffffff', margin: 5 }}
+                  buttonStyle={{ color: '#000000' }}
+                  text={tag.text} />
+              ))
+            }
+
           </View>
 
+        </View>
+        {/* <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop: 40 }}>
+          <ActionButton
+           actionButton={() => alert('test')}
+            style={{ width: 35, height: 35, }}
+            source={require('./Assets/action-button.png')} />
 
-          <View style={{ flexDirection: 'row' }}>
-            <ActionButton
-              onPress={this.props.onPress}
-              style={{ width: 35, height: 35, }}
-              source={require('./Assets/action-button.png')} />
-            {this.pagination}
-          </View> */}
+        </View> */}
 
-        </ImageBackground>
+      </ImageBackground>
 
 
+
+    );
+
+  }
+
+
+
+
+  render() {
+    const { items } = this.state
+    const itemWidth = 400
+    const sliderWidth = 400
+    return (
+      <View>
+
+        <Carousel
+          ref={(c) => { this._carousel = c; }}
+          data={items}
+          layout={'default'}
+          renderItem={this._renderItem}
+          sliderWidth={sliderWidth}
+          itemWidth={itemWidth}
+          firstItem={0}
+          slideStyle={{ height: '100%', }}
+          activeDotIndex={0}
+          dotColor={'black'}
+          onSnapToItem={(index) => this.setState({ activeSlide: index })}
+
+        />
+
+        {this.pagination}
+        <View>
+
+        <ActionButton
+          onPress={this.props.onPress}
+            style={{ width: 35, height: 35, top: -275 }}
+            source={require('./Assets/action-button.png')} />
+
+         
+        </View>
       </View>
     )
   }
@@ -175,5 +213,20 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
-  }
+  },
+  actionSheetRow: { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 60, },
+  actionSheetRowImage: { marginLeft: 40, maxHeight: 30, maxWidth: 30, },
+  actionSheetRowText: { marginLeft: 32, marginTop: 5, fontSize: 18 },
+  button: { alignSelf: 'center', borderRadius: 8, borderWidth: 1, borderColor: 'white', },
+  buttonText: { paddingTop: 8, paddingBottom: 8, paddingLeft: 12, paddingRight: 12, color: 'white', fontSize: 18, },
 })
+// const options = [
+//   'Cancel',
+//   <View style={styles.actionSheetRow}>
+//     <Text style={{ color: 'black', fontWeight: '600' }}>Delete Entry</Text>
+//   </View>,
+//   <View style={styles.actionSheetRow}>
+//     <Text>Edit Entry</Text>
+//   </View>,
+
+// ];

@@ -12,7 +12,7 @@ const HashTagList = (props) => {
                   style={{
                     margin: 3, backgroundColor: '#FFFFFF'
                   }}
-                  text={tag.name} />
+                  text={tag.tag} />
               ))}
             </View>
  

@@ -206,7 +206,7 @@ export default class App extends Component {
 
     const { checked, accountNum, routingNum, cardNum, expDate, cvv, bankPay, cardPay, zipcode } = this.state
     return (
-      <View style={{  backgroundColor: '#F5F5F5'}}>
+      <View style={{  backgroundColor: '#F5F5F5',   }}>
 
 
         {/* <PaymentTextBlock 
@@ -232,16 +232,23 @@ export default class App extends Component {
         <OfferAssist
         />   */}
         <AlbumViewer
-          shareButton={() => Share.open(shareOptions)}
-          onPress={this.showActionSheet} />
+        onPress={this.showActionSheet}
+          />
 
+            <ActionSheet
+            ref={o => this.ActionSheet = o}
+            options={options}
+            cancelButtonIndex={0}
+            onPress={(index) => this.moreAction(index)}
+          />
+{/* <Text onPress={this.showActionSheet}>test</Text>
         <ActionSheet
           ref={o => this.ActionSheet = o}
           options={options}
           cancelButtonIndex={0}
           onPress={(index) => this.moreAction(index)}
         />
-
+ */}
 
 
 

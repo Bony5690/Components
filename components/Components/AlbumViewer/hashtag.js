@@ -6,8 +6,8 @@ class HashTag extends React.Component {
     render() {
         const { onClose, text,  } = this.props;
             return (
-                <View style={[this.props.style, styles.wrap]}>
-                    <Text style={styles.buttonText} >{`#${text}`}</Text>
+                <View style={[ styles.wrap, this.props.style,]}>
+                    <Text style={[styles.buttonText, this.props.buttonStyle]} >{`#${text}`}</Text>
                     <TouchableOpacity onPress={onClose}>
                         <Image style={styles.buttonX} source={require('./Assets/icon-circle-x.png')} />
                     </TouchableOpacity>
